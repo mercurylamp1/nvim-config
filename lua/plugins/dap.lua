@@ -15,6 +15,7 @@ return {
 		request = "launch",
 		program = "build/debug",
 		cwd = "${workspaceFolder}",
+		console = "integratedTerminal",
 		stopAtBeginningOfMainSubprogram = false,
   }
 }
