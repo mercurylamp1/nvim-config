@@ -1,7 +1,12 @@
+vim.g.mapleader = " "
+vim.g.maplocalleader = "\\"
+
 vim.wo.number = true
 vim.wo.relativenumber = true
-vim.o.undofile = true
+
 vim.opt.confirm = true
+
+vim.o.undofile = true
 vim.o.signcolumn = "yes"
 vim.o.scrolloff = math.floor(vim.fn.winheight(0) / 2 - 5)
 
