@@ -1,7 +1,6 @@
 return {
 	{
 		"hrsh7th/nvim-cmp",
-		lazy = false,
 		dependencies = {
 			'hrsh7th/cmp-nvim-lsp',
 			'hrsh7th/cmp-buffer',
@@ -9,6 +8,8 @@ return {
 			'hrsh7th/cmp-cmdline',
 			'hrsh7th/cmp-nvim-lsp-signature-help',
 		 },
+		 keys = {"a", "i", "c", "r", "o"},
+
 		config = function()
 			local cmp = require'cmp'
 			cmp.setup({
