@@ -3,11 +3,11 @@ return {
 		"hrsh7th/nvim-cmp",
 		lazy = false,
 		dependencies = {
-			'neovim/nvim-lspconfig',
 			'hrsh7th/cmp-nvim-lsp',
 			'hrsh7th/cmp-buffer',
 			'hrsh7th/cmp-path',
 			'hrsh7th/cmp-cmdline',
+			'hrsh7th/cmp-nvim-lsp-signature-help',
 		 },
 		config = function()
 			local cmp = require'cmp'
@@ -19,17 +19,17 @@ return {
 				},
 				window = {},
 				mapping = cmp.mapping.preset.insert({
-					['C-b'] = cmp.mapping.scroll_docs(-4),
-					['C-f'] = cmp.mapping.scroll_docs(4),
-					['C-Space'] = cmp.mapping.complete(),
-					['C-e'] = cmp.mapping.abort(),
+					['<C-b>'] = cmp.mapping.scroll_docs(-4),
+					['<C-f>'] = cmp.mapping.scroll_docs(4),
+					['<C-Space>'] = cmp.mapping.complete(),
+					['<C-e>'] = cmp.mapping.abort(),
 					['<S-Tab>'] = cmp.mapping(function(fallback) 		--TODO: 
 						if vim.snippet.active({direction = -1}) then
 							vim.snippet.jump(-1)
 						else
 							fallback()
 						end
-					end),
+					end,{"i", "s"}), 
 					['<Tab>'] = cmp.mapping(function(fallback)
 						if vim.snippet.active({direction = 1}) then
 							vim.snippet.jump(1)
@@ -38,10 +38,10 @@ return {
 						else
 							fallback()
 						end
-					end),
+					end, {"i", "s"}), 
 				}),
 				sources = cmp.config.sources({
-					{name = 'nvim_lsp'}, }, { {name = 'buffer'},
+					{name = 'nvim_lsp_signature_help'}, }, { {name = 'nvim_lsp'}, 
 					}),
 				})
 			cmp.setup.cmdline(':', {
@@ -50,10 +50,6 @@ return {
 			}),
 				matching = { disallow_symbol_nonprefix_matching = false },
 			})
-			local capabilities = require('cmp_nvim_lsp').default_capabilities()
-			require('lspconfig')['clangd'].setup {
-				capabilities = capabilities
-			}
 		end
 	}
 }
